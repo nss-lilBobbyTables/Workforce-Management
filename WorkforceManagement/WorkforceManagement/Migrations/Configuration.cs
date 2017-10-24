@@ -4,6 +4,7 @@ namespace WorkforceManagement.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using WorkforceManagement.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<WorkforceManagement.Models.WorkforceManagementContext>
     {
@@ -20,12 +21,12 @@ namespace WorkforceManagement.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
+                context.Departments.AddOrUpdate(
+                  p => p.Name,
+                  new Departments { Name = "Pet products", Description = "Cat shoes", Type = DepartmentType.Shoes },
+                  new Departments { Name = "Gadget", Description = "Electronic key", Type = DepartmentType.Electronics },
+                  new Departments { Name = "Dishes", Description = "China dinnerware", Type = DepartmentType.Housewares }
+                );
             //
         }
     }
