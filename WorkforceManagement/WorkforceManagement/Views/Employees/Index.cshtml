@@ -15,15 +15,17 @@
             @Html.DisplayNameFor(model => model.JobTitle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            Last Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+            Start Date
         </th>
-        <th></th>
+        <th>
+            Department
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -39,6 +41,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departments.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
