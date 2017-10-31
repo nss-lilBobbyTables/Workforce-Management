@@ -16,6 +16,7 @@ namespace WorkforceManagement.Controllers
 
         // GET: Departments
         public ActionResult Index()
+
         {
             return View(db.Departments.ToList());
         }
@@ -27,7 +28,7 @@ namespace WorkforceManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departments departments = db.Departments.Find(id);
+            var departments = db.Departments.Find(id);
             if (departments == null)
             {
                 return HttpNotFound();
