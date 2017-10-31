@@ -1,4 +1,6 @@
-﻿namespace WorkforceManagement.Models
+﻿using System.Collections.Generic;
+
+namespace WorkforceManagement.Models
 {
     public class Departments
     {
@@ -6,7 +8,8 @@
         public string Description { get; set; }
         public string Name { get; set; }
         public DepartmentType Type { get; set; }
-        
+
+        public virtual List<Employees> Employees { get; set; }
     }
 
     public enum DepartmentType
