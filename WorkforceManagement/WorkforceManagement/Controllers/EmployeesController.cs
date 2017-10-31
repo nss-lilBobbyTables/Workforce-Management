@@ -32,7 +32,7 @@ namespace WorkforceManagement.Controllers
             if (employees == null)
             {
                 return HttpNotFound();
-            }
+            } 
             return View(employees);
         }
 
@@ -73,16 +73,34 @@ namespace WorkforceManagement.Controllers
         // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Departments = new WorkforceManagementContext().Departments.ToList().Select(x =>
+            new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Employees employees = db.Employees.Find(id);
+            var employeeDetails = new MakeNewEmployeeRequest
+            {
+                JobTitle = employees.JobTitle,
+                FirstName = employees.FirstName,
+                LastName = employees.LastName,
+                StartDate = employees.StartDate,
+                DepartmentId = employees.Departments.Id
+
+
+            };
+            
+
             if (employees == null)
             {
                 return HttpNotFound();
             }
-            return View(employees);
+
+            return View(employeeDetails);
+
+
         }
 
         // POST: Employees/Edit/5
@@ -90,7 +108,7 @@ namespace WorkforceManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,JobTitle,FirstName,LastName,StartDate")] Employees employees)
+        public ActionResult Edit([Bind(Include = "Id,JobTitle,FirstName,LastName,StartDate,Departments")] Employees employees)
         {
             if (ModelState.IsValid)
             {
