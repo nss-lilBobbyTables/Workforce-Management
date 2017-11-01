@@ -47,10 +47,20 @@
             @Html.DisplayFor(modelItem => item.Departments.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Computers.Id)
-        </td>
+    @foreach (var puter in item.Computers)
+
+    {
+        <span> @puter.Model   ,    @puter.Id</span>
+    }
+    </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.TrainingPrograms.Name)
+            @foreach (var program in item.TrainingPrograms)
+            {
+
+                <span>@program.Name</span>
+
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
