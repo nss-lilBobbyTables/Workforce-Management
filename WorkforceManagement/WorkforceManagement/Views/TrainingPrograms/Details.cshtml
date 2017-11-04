@@ -49,6 +49,16 @@
         <dd>
             @Html.DisplayFor(model => model.EndDate)
         </dd>
+        <dt>
+            <span>Attending Employees</span>
+        </dt>
+        @foreach (var employees in Model.Employees )
+        { 
+
+            <dd>
+                @employees.FirstName @employees.LastName
+            </dd>
+        }
 
     </dl>
 </div>

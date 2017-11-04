@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Training Programs</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,7 +29,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Where(d => d.StartDate > DateTime.Now)) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Description)

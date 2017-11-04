@@ -42,6 +42,27 @@
             @Html.DisplayFor(model => model.StartDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Computers)
+        </dt>
+        <dd>
+            @foreach(var puter in Model.Computers )
+            {
+                <span>@puter.Id , @puter.Model</span>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainingPrograms)
+        </dt>
+        <dd>
+            @foreach(var program in Model.TrainingPrograms)
+            {
+                <span>@program.Name : @program.Description</span><br />
+            }
+        </dd>
+
+    
     </dl>
 </div>
 <p>

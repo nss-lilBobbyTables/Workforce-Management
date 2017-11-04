@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WorkforceManagement.Models;
+using WorkforceManagement.ViewModels;
 
 namespace WorkforceManagement.Controllers
 {
@@ -31,46 +32,75 @@ namespace WorkforceManagement.Controllers
             if (employees == null)
             {
                 return HttpNotFound();
-            }
+            } 
             return View(employees);
         }
 
         // GET: Employees/Create
         public ActionResult Create()
         {
+            ViewBag.Departments = new WorkforceManagementContext().Departments.ToList().Select(x =>
+                new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
             return View();
         }
+
 
         // POST: Employees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,JobTitle,FirstName,LastName,StartDate")] Employees employees)
+        public ActionResult Create(MakeNewEmployeeRequest employee)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employees);
+                var newEmployee = new Employees
+                {
+                    JobTitle = employee.JobTitle,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    StartDate = employee.StartDate,
+                    Departments = db.Departments.Find(employee.DepartmentId)
+                };
+                db.Employees.Add(newEmployee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employees);
+            return View(employee);
         }
 
         // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Departments = new WorkforceManagementContext().Departments.ToList().Select(x =>
+            new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Employees employees = db.Employees.Find(id);
+            var employeeDetails = new MakeNewEmployeeRequest
+            {
+                JobTitle = employees.JobTitle,
+                FirstName = employees.FirstName,
+                LastName = employees.LastName,
+                StartDate = employees.StartDate,
+                DepartmentId = employees.Departments.Id
+
+
+            };
+            
+
             if (employees == null)
             {
                 return HttpNotFound();
             }
-            return View(employees);
+
+            return View(employeeDetails);
+
+
         }
 
         // POST: Employees/Edit/5
@@ -78,7 +108,7 @@ namespace WorkforceManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,JobTitle,FirstName,LastName,StartDate")] Employees employees)
+        public ActionResult Edit([Bind(Include = "Id,JobTitle,FirstName,LastName,StartDate,Departments")] Employees employees)
         {
             if (ModelState.IsValid)
             {

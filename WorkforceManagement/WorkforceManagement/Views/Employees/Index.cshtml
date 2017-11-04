@@ -1,10 +1,10 @@
-﻿@model IEnumerable<WorkforceManagement.Models.Employees>
+@model IEnumerable<WorkforceManagement.Models.Employees>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Employees</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -23,7 +23,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Departments)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Computers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainingPrograms)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -39,6 +44,17 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Departments.Name)
+        </td>
+        <td>
+            @foreach (var puter in item.Computers) {
+              <span> @puter.Model   ,    @puter.Id</span>
+            }
+        </td>
+        <td>
+            @foreach (var program in item.TrainingPrograms)
+            {
+                <span>@program.Name</span>
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

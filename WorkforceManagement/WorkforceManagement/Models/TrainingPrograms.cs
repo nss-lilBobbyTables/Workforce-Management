@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WorkforceManagement.Models
 {
@@ -11,6 +12,6 @@ namespace WorkforceManagement.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-
+        public virtual List<Employees> Employees { get; set; }
     }
 }
