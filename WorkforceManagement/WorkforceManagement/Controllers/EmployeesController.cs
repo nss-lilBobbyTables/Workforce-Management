@@ -76,21 +76,29 @@ namespace WorkforceManagement.Controllers
             ViewBag.Departments = new WorkforceManagementContext().Departments.ToList().Select(x =>
             new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
 
+            ViewBag.Computers = new WorkforceManagementContext().Computers.ToList().Select(x =>
+            new SelectListItem { Text = x.Id.ToString(), Value = x.Id.ToString() });
+
+            ViewBag.TraingPrograms = new WorkforceManagementContext().TrainingPrograms.ToList().Select(x =>
+            new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Employees employees = db.Employees.Find(id);
-            var employeeDetails = new MakeNewEmployeeRequest
+           
+             var employeeDetails = new MakeNewEmployeeRequest
             {
                 JobTitle = employees.JobTitle,
                 FirstName = employees.FirstName,
                 LastName = employees.LastName,
                 StartDate = employees.StartDate,
-                DepartmentId = employees.Departments.Id
-
-
+                DepartmentId = employees.Departments.Id,
+                ComputerId = employees.Computers.Id,
+                TrainingPrograms = employees.TrainingPrograms.ToList()
             };
+            
             
 
             if (employees == null)
