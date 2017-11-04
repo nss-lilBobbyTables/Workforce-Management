@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WorkforceManagement.Models;
+using WorkforceManagement.ViewModels;
 
 namespace WorkforceManagement.Controllers
 {
@@ -17,7 +18,14 @@ namespace WorkforceManagement.Controllers
         // GET: Computers
         public ActionResult Index()
         {
-            return View(db.Computers.ToList());
+            var computersList = db.Computers.Select(comp => new ComputerListView {
+                Employees = db.Employees.FirstOrDefault(e => e.Computers.Id == comp.Id),
+                Model = comp.Model,
+                PurchaseDate = comp.PurchaseDate,
+                Manufacturer = comp.Manufacturer,
+                Id = comp.Id
+            });
+            return View(computersList.ToList());
         }
 
         // GET: Computers/Details/5
