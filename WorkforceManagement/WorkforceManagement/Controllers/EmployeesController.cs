@@ -32,7 +32,7 @@ namespace WorkforceManagement.Controllers
             if (employees == null)
             {
                 return HttpNotFound();
-            } 
+            }
             return View(employees);
         }
 
@@ -87,7 +87,7 @@ namespace WorkforceManagement.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Employees employees = db.Employees.Find(id);
-           
+
              var employeeDetails = new MakeNewEmployeeRequest
             {
                 JobTitle = employees.JobTitle,
@@ -99,15 +99,12 @@ namespace WorkforceManagement.Controllers
                 TrainingPrograms = employees.TrainingPrograms.ToList()
             };
             
-            
-
             if (employees == null)
             {
                 return HttpNotFound();
             }
 
             return View(employeeDetails);
-
 
         }
 
