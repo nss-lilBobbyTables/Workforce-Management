@@ -168,6 +168,10 @@
     <Compile Include="Migrations\201710312347290_VirtualLists.Designer.cs">
       <DependentUpon>201710312347290_VirtualLists.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711041432001_Workforce2.cs" />
+    <Compile Include="Migrations\201711041432001_Workforce2.Designer.cs">
+      <DependentUpon>201711041432001_Workforce2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Computers.cs" />
     <Compile Include="Models\Departments.cs" />
@@ -260,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710312347290_VirtualLists.resx">
       <DependentUpon>201710312347290_VirtualLists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041432001_Workforce2.resx">
+      <DependentUpon>201711041432001_Workforce2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
