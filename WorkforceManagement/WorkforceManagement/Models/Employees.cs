@@ -13,7 +13,7 @@ namespace WorkforceManagement.Models
         public string LastName { get; set; }
         public DateTime StartDate { get; set; }
 
-        public virtual List<Computers> Computers { get; set; }
+        public virtual Computers Computers { get; set; }
         public virtual Departments Departments { get; set; }
         public virtual List<TrainingPrograms> TrainingPrograms { get; set; }
 

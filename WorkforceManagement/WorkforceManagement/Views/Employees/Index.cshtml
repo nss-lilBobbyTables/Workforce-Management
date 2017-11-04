@@ -47,12 +47,8 @@
             @Html.DisplayFor(modelItem => item.Departments.Name)
         </td>
         <td>
-    @foreach (var puter in item.Computers)
-
-    {
-        <span> @puter.Model   ,    @puter.Id</span>
-    }
-    </td>
+            <span>@item.Computers.Model</span>
+        </td>
 
         <td>
             @foreach (var program in item.TrainingPrograms)

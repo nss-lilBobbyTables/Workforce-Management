@@ -168,6 +168,10 @@
     <Compile Include="Migrations\201710312347290_VirtualLists.Designer.cs">
       <DependentUpon>201710312347290_VirtualLists.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711041717548_ComputerEmployeeRelations.cs" />
+    <Compile Include="Migrations\201711041717548_ComputerEmployeeRelations.Designer.cs">
+      <DependentUpon>201711041717548_ComputerEmployeeRelations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Computers.cs" />
     <Compile Include="Models\Departments.cs" />
@@ -175,6 +179,7 @@
     <Compile Include="Models\TrainingPrograms.cs" />
     <Compile Include="Models\WorkforceManagementContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ComputerListView.cs" />
     <Compile Include="ViewModels\MakeNewEmployeeRequest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710312347290_VirtualLists.resx">
       <DependentUpon>201710312347290_VirtualLists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041717548_ComputerEmployeeRelations.resx">
+      <DependentUpon>201711041717548_ComputerEmployeeRelations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

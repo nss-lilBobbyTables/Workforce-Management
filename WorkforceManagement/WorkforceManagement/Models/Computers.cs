@@ -9,7 +9,5 @@ namespace WorkforceManagement.Models
         public string Manufacturer { get; set; }
         public string Model { get; set; }
         public DateTime PurchaseDate { get; set; }
-
-        public virtual List<Employees> Employees { get; set; }
     }
 }
