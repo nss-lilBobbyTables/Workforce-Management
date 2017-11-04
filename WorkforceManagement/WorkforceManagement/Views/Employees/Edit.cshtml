@@ -1,4 +1,4 @@
-﻿@model WorkforceManagement.Models.Employees
+﻿@model WorkforceManagement.ViewModels.MakeNewEmployeeRequest
 
 @{
     ViewBag.Title = "Edit";
@@ -10,12 +10,11 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Employees</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,12 +49,72 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DepartmentId, (IEnumerable<SelectListItem>)ViewBag.Departments)
+                @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComputerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ComputerId, (IEnumerable<SelectListItem>)ViewBag.Computers)
+                @Html.ValidationMessageFor(model => model.ComputerId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+       <!-->
+        <div class="form-group">
+           @* @Html.LabelFor(model => model.TrainingPrograms, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TrainingPrograms(IEnumerable<SelectListItem>)ViewBag.TrainingPrograms)
+                @Html.ValidationMessageFor(model => model.ComputerId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+           </!-->
+
     </div>
 }
+        <p> Current enrolled in these training programs:</p>
+            @foreach (var item in Model.TrainingPrograms.Where(d => d.StartDate > DateTime.Now))
+            {
+                <table>
+                    <tr>
+                        <th> Program Name</th>
+                        <th> Start Date</th>
+                        <th> End Date</th>
+                        <th> Remove Program</th>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                 </table>
+            }
+
+
+
+
+
+             <div class="form-group">
+                 <div class="col-md-offset-2 col-md-10">
+                     <input type="submit" value="Save" class="btn btn-default" />
+                 </div>
+             </div>
+           
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -64,3 +123,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Employees</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -49,13 +49,10 @@
         <td>
             <span>@item.Computers.Model</span>
         </td>
-
         <td>
             @foreach (var program in item.TrainingPrograms)
             {
-
                 <span>@program.Name</span>
-
             }
         </td>
         <td>
